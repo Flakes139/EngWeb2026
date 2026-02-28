@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Training Records List 
+        a.w3-btn.w3-round.w3-grey(href="/treinos/register") +
+    
+    .w3-container
+      table.w3-table-all.w3-margin-top
+        tr
+          th Data
+          th Nome
+          th Desporto
+          th Duração
+          th Operações
+        each t in list
+          tr
+            td= t.data
+            td= t.nome
+            td= t.desporto
+            td= t.duracao
+            td
+              a.w3-btn.w3-round.w3-blue-grey.w3-small(href=`/treinos/edit/${t.id}`) Edit
+              a.w3-btn.w3-round.w3-red.w3-small.w3-margin-left(href=`/treinos/delete/${t.id}`) Delete
+              

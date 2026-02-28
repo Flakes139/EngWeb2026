@@ -1,0 +1,98 @@
+extends layout
+
+block content
+  style.
+    .detail-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 700px;
+    }
+    .card-header {
+      background: var(--surface2);
+      border-bottom: 2px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-header h2 {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+    .card-header h2 span { color: var(--accent); }
+    .card-body {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .field label {
+      display: block;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .field .value { font-size: 0.9rem; }
+    .field.full { grid-column: 1 / -1; }
+    .card-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .card-footer .spacer { flex: 1; }
+
+  .detail-card
+    .card-header
+      h2= emd.nome && emd.nome.primeiro ? emd.nome.primeiro + " #[span " + emd.nome.último + "]" : emd.nome
+      if emd.resultado
+        span.badge.badge-ok Apto
+      else
+        span.badge.badge-no Inapto
+    .card-body
+      .field
+        label Data EMD
+        .value= emd.dataEMD
+      .field
+        label Idade
+        .value= emd.idade + " anos"
+      .field
+        label Género
+        .value= emd.género === 'M' ? 'Masculino' : 'Feminino'
+      .field
+        label Morada
+        .value= emd.morada
+      .field
+        label Modalidade
+        .value= emd.modalidade
+      .field
+        label Clube
+        .value= emd.clube
+      .field.full
+        label Email
+        .value= emd.email
+      .field
+        label Federado
+        .value
+          if emd.federado
+            span.badge.badge-ok Sim
+          else
+            span.badge.badge-no Não
+      .field
+        label Resultado
+        .value
+          if emd.resultado
+            span.badge.badge-ok Apto ✅
+          else
+            span.badge.badge-no Inapto ❌
+    .card-footer
+      a.btn.btn-edit(href=`/emd/edit/${emd.id}`) Editar
+      a.btn.btn-danger(href=`/emd/delete/${emd.id}`) Eliminar
+      .spacer
+      a.btn.btn-secondary(href="/emd") ← Voltar
