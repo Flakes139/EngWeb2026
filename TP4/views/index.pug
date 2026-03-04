@@ -1,26 +1,93 @@
 extends layout
 
 block content
-  .w3-card-4
-    header.w3-container.w3-teal
-      h1 Training Records List 
-        a.w3-btn.w3-round.w3-grey(href="/treinos/register") +
-    
-    .w3-container
-      table.w3-table-all.w3-margin-top
+  style.
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .page-header h1 span { color: var(--accent); }
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .data-table thead tr {
+      background: var(--surface2);
+      border-bottom: 2px solid var(--accent);
+    }
+    .data-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    .data-table tbody tr:hover { background: var(--surface2); }
+    .data-table td { padding: 10px 14px; }
+    .actions { display: flex; gap: 6px; }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+  .page-header
+    h1 Registos #[span EMD]
+    a.btn.btn-primary(href="/emd/register") + Novo Registo
+
+  .sort-bar
+    span Ordenar por:
+    if sort === 'dataEMD'
+      a.btn.btn-secondary(href="/emd?sort=nome") Nome
+      span.btn.btn-primary Data ✓
+    else
+      span.btn.btn-primary Nome ✓
+      a.btn.btn-secondary(href="/emd") Data
+
+  .table-wrap
+    table.data-table
+      thead
         tr
-          th Data
           th Nome
-          th Desporto
-          th Duração
-          th Operações
-        each t in list
+          th Data EMD
+          th Modalidade
+          th Resultado
+          th Ações
+      tbody
+        each e in list
           tr
-            td= t.data
-            td= t.nome
-            td= t.desporto
-            td= t.duracao
+            td= e.nome.primeiro + " " + e.nome.último
+            td= e.dataEMD
+            td= e.modalidade
             td
-              a.w3-btn.w3-round.w3-blue-grey.w3-small(href=`/treinos/edit/${t.id}`) Edit
-              a.w3-btn.w3-round.w3-red.w3-small.w3-margin-left(href=`/treinos/delete/${t.id}`) Delete
-              
+              if e.resultado
+                span.badge.badge-ok Apto
+              else
+                span.badge.badge-no Inapto
+            td.actions
+              a.btn.btn-view(href=`/emd/${e.id}`) Ver
+              a.btn.btn-edit(href=`/emd/edit/${e.id}`) Edit
+              a.btn.btn-danger(href=`/emd/delete/${e.id}`) Del
