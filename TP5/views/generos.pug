@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Géneros
+        a.w3-btn.w3-round.w3-white.w3-right.w3-margin-right(href="/generos") Géneros
+        a.w3-btn.w3-round.w3-grey.w3-right.w3-margin-right(href="/atores") Atores
+        a.w3-btn.w3-round.w3-grey.w3-right.w3-margin-right(href="/") Filmes
+    
+    .w3-container
+      table.w3-table-all.w3-margin-top
+        tr
+          th ID
+          th Nome
+          th Nº Filmes
+          th Operações
+        each genero in generos
+          tr
+            td= genero.id
+            td= genero.name
+            td= genero.filmes.length
+            td
+              a.w3-button.w3-blue(href="/generos/" + genero.id) Ver
