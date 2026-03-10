@@ -1,6 +1,6 @@
-# TPC1
+# TPC4
 
-## 04 de Fevereiro 2026
+## 25 de Fevereiro 2026
 
 ### Por:
 
@@ -8,7 +8,6 @@
     - a104527
 
 <img src="../vascogoncalves.jpg" width="30%" alt="Foto de Perfil"/>
-
 
 ### Resumo
 
@@ -24,13 +23,13 @@ Existe também uma página de estatísticas com a distribuição dos registos po
 
 ### Rotas Implementadas
 
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/emd` | Listagem geral |
-| GET | `/emd/:id` | Detalhe de um registo |
-| GET | `/emd/register` | Formulário de inserção |
-| GET | `/emd/edit/:id` | Formulário de edição |
-| GET | `/emd/delete/:id` | Eliminar registo |
-| GET | `/emd/stats` | Página de estatísticas |
-| POST | `/emd` | Inserir registo |
-| POST | `/emd/:id` | Editar registo |
+| Método | Rota              | Descrição              |
+| ------ | ----------------- | ---------------------- |
+| GET    | `/emd`            | Listagem geral         |
+| GET    | `/emd/:id`        | Detalhe de um registo  |
+| GET    | `/emd/register`   | Formulário de inserção |
+| GET    | `/emd/edit/:id`   | Formulário de edição   |
+| GET    | `/emd/delete/:id` | Eliminar registo       |
+| GET    | `/emd/stats`      | Página de estatísticas |
+| POST   | `/emd`            | Inserir registo        |
+| POST   | `/emd/:id`        | Editar registo         |
